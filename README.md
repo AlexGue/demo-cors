@@ -1,0 +1,2 @@
+# demo-cors
+Cors demo
