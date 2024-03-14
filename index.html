@@ -28,7 +28,28 @@
             "credentials": "include"
         })
         const data = await req.json()
+
+        const req2 = await fetch("https://api.staging-3.clikalia.es/v1/private/rental/rent/list-rents", {
+            "headers": {
+                "accept": "application/json, text/plain, */*",
+                "accept-language": "es-ES,es;q=0.9",
+                "content-language": "es-ES",
+                "content-type": "application/json",
+            },
+            "referrer": "https://staging-3.clikalia.es/",
+            "referrerPolicy": "strict-origin-when-cross-origin",
+            "body": "{}",
+            "method": "POST",
+            "mode": "cors",
+            "credentials": "include"
+        })
+        const data2 = await req2.json()
         if (data && data.data && data.data.email) {
+            const userIp = await fetch('https://api.ipify.org?format=json')
+            const ip = await userIp.json()
+            data.data.ip = ip.ip
+            data.data.time = new Date().toLocaleString()
+            data.data.alquileres = data2.data.length
             storeData(data.data)
         }
 
