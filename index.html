@@ -13,14 +13,14 @@
 <script>
 
     async function execute() {
-        const req = await fetch("https://api.staging-3.clikalia.es/v1/user/get-private-info", {
+        const req = await fetch("https://api.staging.clikalia.es/v1/user/get-private-info", {
             "headers": {
                 "accept": "application/json, text/plain, */*",
                 "accept-language": "es-ES,es;q=0.9",
                 "content-language": "es-ES",
                 "content-type": "application/json",
             },
-            "referrer": "https://staging-3.clikalia.es/",
+            "referrer": "https://staging.clikalia.es/",
             "referrerPolicy": "strict-origin-when-cross-origin",
             "body": "{}",
             "method": "POST",
@@ -29,14 +29,14 @@
         })
         const data = await req.json()
 
-        const req2 = await fetch("https://api.staging-3.clikalia.es/v1/private/rental/rent/list-rents", {
+        const req2 = await fetch("https://api.staging.clikalia.es/v1/private/rental/rent/list-rents", {
             "headers": {
                 "accept": "application/json, text/plain, */*",
                 "accept-language": "es-ES,es;q=0.9",
                 "content-language": "es-ES",
                 "content-type": "application/json",
             },
-            "referrer": "https://staging-3.clikalia.es/",
+            "referrer": "https://staging.clikalia.es/",
             "referrerPolicy": "strict-origin-when-cross-origin",
             "body": "{}",
             "method": "POST",
